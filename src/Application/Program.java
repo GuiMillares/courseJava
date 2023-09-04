@@ -1,50 +1,38 @@
-package Application;
+package application;
 
 import java.util.Scanner;
+import entities.Rent;
 
 public class Program {
+    public static void main(String[] args) {
 
-	public static void main(String[] args) {
-		
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.print("Digite o valor de Linhas e Colunas: ");
+        Scanner sc = new Scanner(System.in);
+        Rent[] vect = new Rent[10];
 
-		int m = sc.nextInt();
-		int n = sc.nextInt();		
-		
-		int [][]matriz = new int[m][n];
-		
-		for(int i = 0; i<matriz.length; i++) {
-			for(int j = 0; j < matriz[i].length; j++) {
-				matriz[i][j] = sc.nextInt();
-			}
-		}
-		
-		int x = sc.nextInt();
-	
-		for (int i=0; i<matriz.length; i++) {
-			for (int j=0; j<matriz[i].length; j++) {
-				if (matriz[i][j] == x) {
-					System.out.println("Position " + i + "," + j + ":");
-					if (j > 0) {
-						System.out.println("Left: " + matriz[i][j-1]);
-					}
-					if (i > 0) {
-						System.out.println("Up: " + matriz[i-1][j]);
-					}
-					if (j < matriz[i].length-1) {
-						System.out.println("Right: " + matriz[i][j+1]);
-					}
-					if (i < matriz.length-1) {
-						System.out.println("Down: " + matriz[i+1][j]);
-					}
-				}
-			}
-		}
-		
-		
-		sc.close();
-	}
+        System.out.print("Quantos quartos vao ser alugados? ");
+        int n = sc.nextInt();
 
+        for (int i = 1; i <= n; i++) {
+            System.out.println();
+            System.out.println("Quarto#" + i + ":");
+            System.out.print("Nome: ");
+            sc.nextLine();
+            String name = sc.nextLine();
+            System.out.print("Emai: ");
+            String email = sc.next();
+            System.out.print("Quarto: ");
+            int room = sc.nextInt();
+            vect[room] = new Rent(name, email);
+        }
+
+        System.out.println();
+        System.out.println("Quartos ocupados:");
+        for (int i = 0; i < 10; i++) {
+            if (vect[i] != null) {
+                System.out.println(i + ": " + vect[i]);
+            }
+        }
+
+        sc.close();
+    }
 }
